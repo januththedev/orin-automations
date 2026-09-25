@@ -1,81 +1,39 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Orin Automations — Describe Output, Get a System | Orin AI</title>
-<meta name="description" content="Orin Automations builds the system between your input and your wanted output. Describe what goes in and what must come out — Orin AI plans, builds and runs it." />
+<meta name="description" content="Compile input/output automation requests into reviewable manifests, exact-hash approvals, safe local runs, and Logseq-compatible Markdown." />
 <link rel="canonical" href="https://automations.orinai.org/" />
 <meta name="robots" content="index, follow" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://automations.orinai.org/" />
+<meta property="og:type" content="website" /><meta property="og:url" content="https://automations.orinai.org/" />
 <meta property="og:title" content="Orin Automations — Describe Output, Get a System | Orin AI" />
-<meta property="og:description" content="You give input + wanted output. Orin AI builds the system in between." />
+<meta property="og:description" content="Input and wanted output in, a reviewable system out." />
 <meta property="og:image" content="https://automations.orinai.org/og-automations.png" />
-<meta property="og:site_name" content="Orin Automations" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Orin Automations — Describe Output, Get a System | Orin AI" />
-<meta name="twitter:description" content="Input + wanted output in, working system out." />
-<meta name="twitter:image" content="https://automations.orinai.org/og-automations.png" />
 <meta name="theme-color" content="#04060c" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2304060c'/%3E%3Cpath d='M9 9h14v14H9z' stroke='%23f472b6' stroke-width='2.4' fill='none'/%3E%3Cpath d='M9 16h14M16 9v14' stroke='%23f472b6' stroke-width='1.4'/%3E%3C/svg%3E" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"SoftwareApplication","name":"Orin Automations","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0"},"author":{"@type":"Person","name":"Januth Nimnal","url":"https://januth.dev"},"url":"https://automations.orinai.org/"},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is Orin Automations?","acceptedAnswer":{"@type":"Answer","text":"You describe the input and the output you want; Orin AI builds the system in between — integrations, code, retries and monitoring."}},
-{"@type":"Question","name":"Do I need to build workflows myself?","acceptedAnswer":{"@type":"Answer","text":"No. There are no node graphs to wire. You state what goes in and what must come out; agents design, build and run the pipeline."}}
-]}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2304060c'/%3E%3Cpath d='M9 9h14v14H9z' stroke='%23f472b6' stroke-width='2.4' fill='none'/%3E%3C/svg%3E" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Orin Automations","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0"},"author":{"@type":"Person","name":"Januth Nimnal","url":"https://januth.dev"},"url":"https://automations.orinai.org/"}</script>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#04060c;color:#e9f1ff;font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:#f472b6;text-decoration:none}
-.nav{position:sticky;top:0;display:flex;align-items:center;gap:12px;padding:13px 22px;background:rgba(4,6,12,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(148,184,255,.14)}
-.brand{font-family:'JetBrains Mono',monospace;font-weight:700;color:#f472b6;font-size:15px}
-.sp{flex:1}.nav a.nl{color:#8f9cbd;font-size:13.5px;margin-left:16px}
-main{max-width:1060px;margin:0 auto;padding:0 22px 70px}
-.hero{padding:84px 0 40px;text-align:center}
-.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;color:#f472b6;border:1px solid rgba(244,114,182,.35);background:rgba(244,114,182,.07);padding:7px 14px;border-radius:99px}
-h1{font-size:clamp(34px,5.4vw,58px);line-height:1.05;margin:20px 0 14px;font-weight:700;letter-spacing:-.02em}
-h1 .grad{background:linear-gradient(92deg,#f472b6,#8b93ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:#8f9cbd;font-size:17px;line-height:1.65;max-width:56ch;margin:0 auto 28px}
-.io{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;max-width:820px;margin:34px auto;text-align:left}
-@media(max-width:700px){.io{grid-template-columns:1fr}}
-.box{background:rgba(148,184,255,.045);border:1px solid rgba(148,184,255,.14);border-radius:16px;padding:20px 22px}
-.box h3{margin:0 0 8px;font-size:13px;letter-spacing:.1em;color:#8f9cbd}
-.box p{margin:0;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.7}
-.arrow{align-self:center;font-size:26px;color:#f472b6}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:26px}
-.card{background:rgba(148,184,255,.045);border:1px solid rgba(148,184,255,.14);border-radius:16px;padding:22px}
-.card h3{margin:0 0 8px;font-size:15.5px}.card p{margin:0;color:#8f9cbd;font-size:13.5px;line-height:1.6}
-footer{border-top:1px solid rgba(148,184,255,.14);padding:22px;text-align:center;color:#5c6884;font-size:13px}
-footer a{color:#5c6884;margin:0 8px}
-.badge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;color:#fbbf24;border:1px solid rgba(251,191,36,.4);padding:5px 13px;border-radius:99px;margin-bottom:6px}
+:root{color-scheme:dark;--bg:#04060c;--panel:#0b1020;--panel2:#10172b;--text:#e9f1ff;--muted:#8f9cbd;--line:#263252;--pink:#f472b6;--blue:#8b93ff;--green:#7ee2b8;--warn:#fbbf24;--red:#fb7185}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#18234b 0,#04060c 48%);color:var(--text);font:15px/1.55 Inter,system-ui,sans-serif}a{color:var(--pink)}.nav{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:18px;padding:14px 24px;background:#04060de8;backdrop-filter:blur(16px);border-bottom:1px solid #26325299}.brand{font-weight:800;letter-spacing:.02em}.sp{flex:1}.nav a{color:var(--muted);text-decoration:none;font-size:13px}.wrap{max-width:1120px;margin:auto;padding:0 22px 80px}.hero{padding:70px 0 30px;text-align:center}.eyebrow,.badge{display:inline-block;border:1px solid #f472b655;background:#f472b60d;color:var(--pink);border-radius:99px;padding:6px 12px;font-size:11px;font-weight:800;letter-spacing:.12em}.badge{color:var(--warn);border-color:#fbbf2455;background:#fbbf240d;margin-bottom:12px}h1{font-size:clamp(36px,6vw,64px);line-height:1.02;letter-spacing:-.04em;margin:20px 0 14px}.grad{background:linear-gradient(90deg,var(--pink),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:18px;max-width:650px;margin:0 auto 28px}.layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:#0b1020dd;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 60px #0004}.panel h2{font-size:18px;margin:0 0 6px}.panel p.hint{color:var(--muted);font-size:13px;margin:0 0 16px}label{display:block;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.04em;margin:12px 0 5px}input,textarea,button{font:inherit}input,textarea{width:100%;background:#070b16;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 11px;outline:none}input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #8b93ff22}textarea{min-height:105px;resize:vertical}.row{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}button{border:1px solid var(--line);border-radius:10px;padding:9px 14px;background:#141d35;color:var(--text);cursor:pointer;font-weight:700}button.primary{background:linear-gradient(90deg,var(--pink),var(--blue));color:#090b14;border:0}button:disabled{opacity:.45;cursor:not-allowed}.status{min-height:24px;color:var(--muted);font-size:13px;margin-top:12px}.status[data-kind=error]{color:var(--red)}.status[data-kind=warn]{color:var(--warn)}.hash{font:12px ui-monospace,monospace;color:var(--green);word-break:break-all;background:#071b18;border:1px solid #7ee2b833;padding:9px;border-radius:8px}.code{font:12px/1.5 ui-monospace,SFMono-Regular,monospace;white-space:pre-wrap;overflow:auto;max-height:260px;background:#070b16;border:1px solid var(--line);padding:12px;border-radius:10px;color:#c8d4f5}.wide{grid-column:1/-1}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.card{border:1px solid var(--line);background:#0b1020aa;border-radius:14px;padding:16px}.card h3{margin:0 0 5px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:13px}.steps{counter-reset:step;list-style:none;padding:0;margin:12px 0 0}.steps li{counter-increment:step;display:flex;gap:10px;padding:9px 0;border-top:1px solid #26325288}.steps li:before{content:counter(step);color:var(--pink);font-weight:800}.approval{border-color:#7ee2b566;background:#7ee2b60b}.footer{border-top:1px solid #26325299;padding:22px;text-align:center;color:#5c6884;font-size:13px}.footer a{color:#5c6884;margin:0 7px}@media(max-width:800px){.layout,.cards{grid-template-columns:1fr}.wide{grid-column:auto}.nav{padding:12px 16px}.wrap{padding:0 16px 60px}}
 </style>
 </head>
 <body>
-<header class="nav"><span class="brand">◈ orin automations</span><span class="sp"></span><a class="nl" href="https://orinai.org">Orin AI</a><a class="nl" href="https://github.com/januththedev/orin-automations">GitHub</a></header>
-<main>
-<div class="hero">
-  <div><span class="badge">COMING SOON</span></div>
-  <span class="eyebrow">ORIN AUTOMATIONS</span>
-  <h1>Describe the output.<br /><span class="grad">Get a system.</span></h1>
-  <p class="sub">No workflow builders. No node graphs. Tell Orin what goes <b>in</b> and what must come <b>out</b> — our AIs plan, build and run everything in between.</p>
-  <div class="io">
-    <div class="box"><h3>YOU GIVE</h3><p>input +<br />wanted output</p></div>
-    <div class="arrow">→</div>
-    <div class="box"><h3>ORIN BUILDS</h3><p>plan → build → run<br />self-healing ↓</p></div>
-  </div>
-  <div class="grid">
-    <div class="card"><h3>⚡ No builder UI</h3><p>Triggers, schedules, sources and destinations are inferred from your description — not wired by hand.</p></div>
-    <div class="card"><h3>🔁 Self-healing runs</h3><p>Failures retry, integrations re-auth, and pipelines report — instead of dying silently at 3am.</p></div>
-    <div class="card"><h3>📝 Notes-native</h3><p>Automations read and write your notes. Describe it once; your knowledge base becomes the database.</p></div>
-  </div>
-</div>
+<header class="nav"><span class="brand">◈ orin automations</span><span class="sp"></span><a href="https://orinai.org">Orin AI</a><a href="https://github.com/januththedev/orin-automations">GitHub</a></header>
+<main class="wrap">
+<section class="hero"><span class="badge">LOCAL PREVIEW · V1</span><div class="eyebrow">ORIN AUTOMATIONS</div><h1>Describe the output.<br><span class="grad">Review the system.</span></h1><p class="lead">Turn an input and a wanted output into an immutable pipeline manifest. Generated code is reviewable; approval is bound to the exact manifest hash; the local runner never evaluates arbitrary code or opens a network connection.</p></section>
+<section class="layout">
+<form class="panel" id="compile-form"><h2>1 · Describe the automation</h2><p class="hint">Use a clear input and output. Orin creates a manifest you can inspect before anything runs.</p><label for="name">Pipeline name</label><input id="name" value="Inbox to notes" required maxlength="120"><label for="input">Input</label><textarea id="input" required>Collect updates from the approved sources.</textarea><label for="output">Wanted output</label><textarea id="output" required>A Logseq-compatible Markdown page with stable block IDs.</textarea><div class="row"><button class="primary" type="submit">Compile manifest</button></div><div id="status" class="status" aria-live="polite"></div></form>
+<section class="panel"><h2>2 · Review the manifest</h2><p class="hint">Nothing is executable until you approve this exact hash.</p><div id="hash" class="hash">No manifest compiled</div><h3 style="font-size:14px;margin-top:18px">Readable diff</h3><pre id="diff" class="code">Compile a request to see its proposed steps.</pre><details style="margin-top:14px"><summary>Generated code and policy</summary><pre id="manifest" class="code">—</pre><pre id="manifest-markdown" class="code" style="margin-top:10px">—</pre></details></section>
+<section class="panel approval"><h2>3 · Approve and run locally</h2><p class="hint">Approval expires in 15 minutes and cannot approve a different manifest.</p><div id="approval-state" class="status">Approval required for this exact manifest hash.</div><label for="source">Local input for the safe runner</label><textarea id="source">One useful line.
+Another useful line.</textarea><div class="row"><button id="approve" type="button" disabled>Approve exact hash</button><button id="run" class="primary" type="button" disabled>Run safe preview</button></div><h3 style="font-size:14px;margin-top:20px">Run result</h3><pre id="result" class="code">—</pre></section>
+<section class="panel"><h2>4 · Notes output</h2><p class="hint">The result is appended to a Logseq-compatible page. Stable block IDs survive round trips.</p><label for="notes">Existing notes (optional)</label><textarea id="notes" style="min-height:150px"># Automation output
+
+- Seed block {{id:: seed-001}}</textarea><label for="output-notes">Generated Markdown</label><textarea id="output-notes" style="min-height:190px" readonly></textarea><div class="row"><button id="copy" type="button">Copy Markdown</button><button id="download" type="button">Download .md</button></div></section>
+<section class="panel wide"><h2>What this release proves</h2><ol class="steps"><li><span><strong>Compile:</strong> input/output descriptions become a versioned manifest with readable steps and policy.</span></li><li><span><strong>Approve:</strong> a short-lived approval is cryptographically bound to the manifest hash.</span></li><li><span><strong>Run safely:</strong> only the built-in text transform runs; generated code and network integrations remain review-only.</span></li><li><span><strong>Preserve notes:</strong> Markdown uses Logseq properties, tags, nested blocks, and stable IDs.</span></li></ol></section>
+</section>
+<section class="cards"><article class="card"><h3>⚡ No hidden execution</h3><p>The browser preview never evaluates generated code and never sends input to a provider.</p></article><article class="card"><h3>🔐 Exact approvals</h3><p>Changing the manifest changes the hash and invalidates the previous approval.</p></article><article class="card"><h3>📝 Notes-native</h3><p>Output is ordinary Markdown that remains useful in Logseq and future Orin Code workflows.</p></article></section>
 </main>
-<footer><span>© 2026 Orin AI · <a href="https://orinai.org/januth-nimnal">Januth Nimnal</a></span><a href="https://orinai.org">orinai.org</a><a href="https://chat.orinai.org">Chat</a><a href="https://console.orinai.org">Console</a><a href="https://router.orinai.org">Router</a></footer>
-</body>
-</html>
+<footer class="footer">© 2026 Orin AI · <a href="https://orinai.org/januth-nimnal">Januth Nimnal</a><a href="https://orinai.org">orinai.org</a><a href="https://github.com/januththedev/orin-automations">Source</a></footer>
+<script type="module" src="./app.js"></script>
+</body></html>

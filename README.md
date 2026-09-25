@@ -1,38 +1,43 @@
 # Orin Automations
 
-Describe the **input** and the **output you want**. Orin AI builds the system in between.
+Orin Automations compiles an input/output request into a reviewable pipeline
+manifest, binds approval to the exact manifest hash, runs a deliberately small
+side-effect-free local transform, and writes Logseq-compatible Markdown.
 
-By **Orin AI** · Januth Nimnal · MIT · live at `automations.orinai.org` (planned)
+## Current release
 
-## Thesis
+The v1 local preview in `index.html` is a real compiler/runtime boundary:
 
-No workflow builders. No node graphs. You state what goes in and what must
-come out — triggers, schedules, sources, destinations — and Orin's agents
-design, build and run the pipeline: code, integrations, retries, monitoring.
+- `lib/compiler.mjs` creates a versioned manifest with input/output contracts,
+  generated code, integration policy, a readable diff, and a manifest hash.
+- Approval is short-lived and exact-hash bound. Changing any manifest field
+  invalidates the approval.
+- `runSafePipeline` executes only the built-in text normalization. It never
+  evaluates generated code and never performs network requests.
+- `lib/notes.mjs` parses and serializes Logseq-compatible Markdown with page
+  properties, tags, nested blocks, and stable `{{id:: ...}}` block IDs.
+- The local preview can copy or download the resulting Markdown.
 
+This is intentionally a safe local preview, not a claim that arbitrary remote
+integrations or untrusted generated code are production-ready. Adding those
+requires a separate runtime, secret broker, egress policy, durable quotas,
+retry/idempotency, and an independent security review.
+
+## Run locally
+
+Serve the directory with any static HTTP server (ES modules are used):
+
+```bash
+npx serve .
+npm test
+npm run check
 ```
-YOU                        ORIN AUTOMATIONS
-─────────────────          ─────────────────────────
-input + wanted output  →   plan → build → run → output
-                               ↑___________|
-                           self-healing runs
-```
 
-## Status
+## Product contract
 
-**Scaffolding.** Product scope is being defined (see open questions below).
-Landing page: `index.html` (static, no build).
+Input: bounded text and a requested output description.
+Output: a reviewable manifest, exact-hash approval, bounded local result, and
+Logseq-compatible notes Markdown.
 
-## Open questions (blocking v1)
-
-1. **Runtime** — serverless functions, sandbox-backed workers, local gateway,
-   or all three?
-2. **Notes integration** — Obsidian's application source is proprietary (only
-   the plugin API typings are public). Integration path TBD: plugin-API based,
-   or an open notes core.
-3. **Orin Code integration** — shared markdown engine vs. embedded notes UI
-   vs. automation triggers from code events.
-
-## License
-
-MIT — Januth Nimnal.
+The roadmap for remote execution, generated integrations, and shared Orin
+Code integration remains tracked in the ecosystem master roadmap.
