@@ -15,7 +15,9 @@ The v1 local preview in `index.html` is a real compiler/runtime boundary:
 - `runSafePipeline` executes only the built-in text normalization. It never
   evaluates generated code and never performs network requests.
 - `lib/notes.mjs` parses and serializes Logseq-compatible Markdown with page
-  properties, tags, nested blocks, and stable `{{id:: ...}}` block IDs.
+  properties, tags, nested blocks, and stable `{{id:: ...}}` block IDs. The
+  versioned consumer contract is recorded in `shared-notes-contract.json` and
+  tracks the shared `@orin/notes` platform package.
 - The local preview can copy or download the resulting Markdown.
 
 This is intentionally a safe local preview, not a claim that arbitrary remote
